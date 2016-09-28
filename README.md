@@ -8,7 +8,7 @@ It uses a very simple in-memory database, so if you restart the server or change
 
 ## Installation
 
-Clone the repository and run `npm install`
+Clone the repository and run `npm install`:
 
 ```
 git clone https://github.com/apollostack/frontpage-server
@@ -19,7 +19,7 @@ npm install
 ## Starting the server
 
 ```
-npm start
+OPTICS_API_KEY='KEY-HERE' npm start
 ```
 
 The server will run on port 8080. You can change this by editing `server.js`.
