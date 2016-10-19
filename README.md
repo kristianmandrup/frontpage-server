@@ -6,7 +6,11 @@ This is a really simple GraphQL server that uses [Apollo Server](https://github.
 
 It uses a very simple in-memory database, so if you restart the server or change the code, the data will reset.
 
-Furthermore, [Redis pub/sub subscriptions](https://medium.com/apollo-stack/graphql-subscriptions-with-redis-pub-sub-f636fc84a0c4#.19vxo3fgt) have been added. So you need to install and run a Redis DB server.
+## Feature additions
+
+[Redis pub/sub subscriptions](https://medium.com/apollo-stack/graphql-subscriptions-with-redis-pub-sub-f636fc84a0c4#.19vxo3fgt) has been added. So you need to install and run a Redis DB server.
+
+[koa2 server](http://dev.apollodata.com/tools/apollo-server/setup.html#apolloKoa) support has been added (see `koa2-server.js`)
 
 ## Installation
 
@@ -28,8 +32,17 @@ Connect to server `redis-cli monitor`
 
 ## Starting the app server
 
+*Express 4.0*
+
 ```
 npm start
 ```
+
+*Koa 2*
+
+```
+npm run start-koa
+```
+
 
 The server will run on port 8080. You can change this by editing `server.js`.
