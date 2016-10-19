@@ -3,7 +3,7 @@
 import koa from 'koa';
 import koaRouter from 'koa-router';
 import koaBody from 'koa-bodyparser';
-import { apolloKoa } from 'apollo-server';
+import { apolloKoa, graphiqlKoa } from 'apollo-server';
 
 import cors from 'kcors';
 import { createServer } from 'http';
@@ -25,17 +25,24 @@ const PORT = 3000;
 app.use(koaBody());
 app.use(cors());
 
-router.post('/graphql', apolloKoa({
-    schema,
-    context: {}
-  })
-);
+// For more options
+// http://dev.apollodata.com/tools/apollo-server/setup.html
+
+const apolloServer = apolloKoa({
+  schema,
+  context: {}
+})
+
+router.post('/graphql', apolloServer);
 
 router.get('/schema', (ctx) => {
   this.type = 'text/plain';
   this.body = printSchema(schema);
 });
 
+
+// Add suppport for GraphiQL in-browser IDE exploration
+router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
 app.use(router.routes());
 app.use(router.allowedMethods());

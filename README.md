@@ -46,3 +46,30 @@ npm run start-koa
 
 
 The server will run on port 8080. You can change this by editing `server.js`.
+
+## Docs
+
+Apollo Server accepts only JSON-encoded POST requests. A valid request must contain either a query or an operationName (or both, in case of a named query), and may include variables.
+
+```js
+{
+  "query": "query aTest{ test(who: $arg1) }",
+  "operationName": "aTest",
+  "variables": { "arg1": "me" }
+}
+```
+
+### batch of queries
+
+can be sent by simply sending a JSON-encoded array of queries, e.g.
+
+```js
+[
+  { "query": "{ testString }" },
+  { "query": "query q2{ test(who: \"you\" ) }" }
+]
+```
+
+### GraphiQL
+
+[graphiql](https://github.com/graphql/graphiql) is an in-browser IDE for exploring GraphQL.
