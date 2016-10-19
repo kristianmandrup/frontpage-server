@@ -25,9 +25,19 @@ const PORT = 3000;
 app.use(koaBody());
 app.use(cors());
 
+import { forbidUndefinedInResolve } from 'graphql-tools';
+forbidUndefinedInResolve(schema);
+
+// logging
+import { addErrorLoggingToSchema } from 'graphql-tools';
+const logger = { log: (e) => console.error(e.stack) };
+
+addErrorLoggingToSchema(schema, logger);
+
+// Setup Apollo server
+
 // For more options
 // http://dev.apollodata.com/tools/apollo-server/setup.html
-
 const apolloServer = apolloKoa({
   schema,
   context: {}

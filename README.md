@@ -70,6 +70,40 @@ can be sent by simply sending a JSON-encoded array of queries, e.g.
 ]
 ```
 
+### Schemas
+
+[Generate a schema](http://dev.apollodata.com/tools/graphql-tools/generate-schema.html)
+
+If your schema gets large, you may want to define parts of it in different files and import them to create the full schema.
+
+### Mocking the server
+
+[Mock your GraphQL data based on a schema](http://dev.apollodata.com/tools/graphql-tools/mocking.html)
+
+`addMockFunctionsToSchema({schema, mocks = {}, preserveResolvers = false})`
+
+`addMockFunctionsToSchema` is the function that mockServer uses under the hood. Given an instance of `GraphQLSchema` and a `mock` object, it modifies the schema in place to return mock data for any valid query that is sent to the server.
+
+### Error handling and debugging
+
+[Error handling and debugging](http://dev.apollodata.com/tools/graphql-tools/errors.html)
+
+```js
+import { forbidUndefinedInResolve } from 'graphql-tools';
+
+forbidUndefinedInResolve(schema);
+```
+
+*Logging*
+
+```js
+import { addErrorLoggingToSchema } from 'graphql-tools';
+const logger = { log: (e) => console.error(e.stack) };
+addErrorLoggingToSchema(mySchema, logger);
+```
+
 ### GraphiQL
 
-[graphiql](https://github.com/graphql/graphiql) is an in-browser IDE for exploring GraphQL.
+[graphiql](https://github.com/graphql/graphiql) is an in-browser IDE for exploring GraphQL. Apollo comes with [graphiql](http://dev.apollodata.com/tools/apollo-server/graphiql.html) which has been configured in this project at the route `/graphiql`.
+
+See a [graphql live demo](http://graphql-swapi.parseapp.com/)
